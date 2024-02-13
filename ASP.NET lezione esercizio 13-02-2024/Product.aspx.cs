@@ -30,10 +30,10 @@ namespace ASP.NET_lezione_esercizio_13_02_2024
             if (Request.Cookies["cart"] != null)
             {
                 string oldCookie = Request.Cookies["cart"].Value;
-                cart.Values["cart"] = oldCookie + parametro + "/";
+                string[] newOldCookies = oldCookie.Split('=');
+                cart.Values["cart"] = newOldCookies[1] + parametro + "/";
                 cart.Expires = DateTime.Now.AddDays(7);
                 Response.Cookies.Add(cart);
-
             }
         }
     }
