@@ -4,9 +4,9 @@
 
     <main>
 
-  
-        <input id="Nome" runat="server" type="text" />
-        <input id="Cognome" runat="server" type="text" />
+
+        <input id="Nome" runat="server" type="text" required/>
+        <input id="Cognome" runat="server" type="text" required/>
         <asp:Button ID="Button1" runat="server" Text="Login" OnClick="Button1_Click" />
 
     </main>

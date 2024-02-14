@@ -11,10 +11,18 @@ namespace ASP.NET_lezione_esercizio_13_02_2024
         {
             if (Request.Cookies["login"] != null)
             {
-                Label1.Text = "Benvenuto " + Request.Cookies["login"]["nome"] + " " + Request.Cookies["login"]["cognome"];
-                cart = new HttpCookie("cart");
-                cart.Values["cart"] = string.Empty;
-                Response.Cookies.Add(cart);
+                nominativo.InnerText = "Benvenuto " + Request.Cookies["login"]["nome"] + " " + Request.Cookies["login"]["cognome"];
+
+                if (Request.Cookies["cart"] == null)
+                {
+                    cart = new HttpCookie("cart");
+                    cart.Values["cart"] = string.Empty;
+                    Response.Cookies.Add(cart);
+                }
+                else
+                {
+                    cart = Request.Cookies["cart"];
+                }
             }
             else
             {
@@ -35,6 +43,11 @@ namespace ASP.NET_lezione_esercizio_13_02_2024
                 cart.Expires = DateTime.Now.AddDays(7);
                 Response.Cookies.Add(cart);
             }
+        }
+
+        protected void Button3_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("Cart.aspx");
         }
     }
 }
